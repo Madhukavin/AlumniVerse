@@ -38,6 +38,25 @@ export default function LoginPage() {
   const [role, setRole] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const redirectToDashboard = (userRole: string) => {
+    switch (userRole) {
+      case 'student':
+        router.push('/student/dashboard');
+        break;
+      case 'alumni':
+        router.push('/');
+        break;
+      case 'recruiter':
+        router.push('/recruiter/dashboard');
+        break;
+      case 'institution':
+        router.push('/institution/dashboard');
+        break;
+      default:
+        router.push('/');
+    }
+  };
+
   const handleLogin = async () => {
     if (!email || !password || !role) {
       toast({
@@ -55,22 +74,7 @@ export default function LoginPage() {
         title: 'Success',
         description: 'Logged in successfully!',
       });
-      switch (role) {
-        case 'student':
-          router.push('/student/dashboard');
-          break;
-        case 'alumni':
-          router.push('/');
-          break;
-        case 'recruiter':
-          router.push('/recruiter/dashboard');
-          break;
-        case 'institution':
-          router.push('/institution/dashboard');
-          break;
-        default:
-          router.push('/');
-      }
+      redirectToDashboard(role);
     } catch (error: any) {
       toast({
         title: 'Login Failed',
@@ -97,11 +101,9 @@ export default function LoginPage() {
       localStorage.setItem('userRole', role);
       toast({
         title: 'Success',
-        description: 'Account created successfully! Please log in.',
+        description: 'Account created successfully!',
       });
-      // Redirect to login or auto-login, for now just clearing fields
-      setEmail('');
-      setPassword('');
+      redirectToDashboard(role);
     } catch (error: any) {
       toast({
         title: 'Sign Up Failed',
