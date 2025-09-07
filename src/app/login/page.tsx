@@ -130,8 +130,7 @@ export default function LoginPage() {
         />
       </div>
       <div className="space-y-2">
-        <Label htmlFor="password">Password</Label>
-        <Input
+        <Label htmlFor="password">Password</Label>        <Input
           id="password"
           type="password"
           required
@@ -166,7 +165,7 @@ export default function LoginPage() {
           </div>
           <CardTitle className="text-3xl font-bold tracking-tight">AlumniVerse</CardTitle>
           <CardDescription>
-            Connecting alumni for lifelong success.
+            Connect. Engage. Grow.
           </CardDescription>
         </CardHeader>
         <CardContent>
