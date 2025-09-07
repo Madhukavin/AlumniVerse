@@ -25,6 +25,7 @@ import {
   SidebarMenuButton,
   SidebarFooter,
   SidebarInset,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -61,6 +62,7 @@ function MainSidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const [navItems, setNavItems] = useState(alumniNavItems);
+  const { state } = useSidebar();
 
   useEffect(() => {
     const role = localStorage.getItem('userRole');
@@ -95,6 +97,7 @@ function MainSidebar() {
           <span
             className={cn(
               "font-bold text-lg whitespace-nowrap transition-opacity duration-300",
+               state === 'collapsed' && "opacity-0"
             )}
           >
             AlumniVerse
