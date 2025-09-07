@@ -79,7 +79,7 @@ export default function MentorFinderPage() {
              <Card className="mt-6">
                 <CardContent className="p-6">
                   <h3 className="text-lg font-semibold mb-4">Recommended Mentors</h3>
-                  <div className="prose prose-invert max-w-none text-muted-foreground whitespace-pre-wrap">
+                  <div className="prose dark:prose-invert max-w-none text-muted-foreground whitespace-pre-wrap">
                     {state.recommendations}
                   </div>
                 </CardContent>
