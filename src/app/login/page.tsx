@@ -27,7 +27,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { GraduationCap, Loader2 } from 'lucide-react';
+import { School, Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 export default function LoginPage() {
@@ -162,7 +162,7 @@ export default function LoginPage() {
       <Card className="w-full max-w-md mx-4">
         <CardHeader className="text-center">
           <div className="flex justify-center mb-4">
-            <GraduationCap className="w-12 h-12 text-primary" />
+            <School className="w-12 h-12 text-primary" />
           </div>
           <CardTitle className="text-3xl font-bold tracking-tight">AlumniVerse</CardTitle>
           <CardDescription>
