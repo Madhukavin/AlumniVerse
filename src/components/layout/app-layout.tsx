@@ -101,15 +101,17 @@ function MainSidebar() {
     >
       <SidebarHeader>
         <Link href="/" className="flex items-center gap-2">
-          <School className="w-7 h-7 text-primary" />
-          <span
-            className={cn(
-              "font-bold text-lg whitespace-nowrap transition-opacity duration-300",
-               state === 'collapsed' && "opacity-0"
-            )}
-          >
-            AlumniVerse
-          </span>
+          <School className="w-8 h-8 text-primary" />
+          <div className={cn("flex flex-col transition-opacity duration-300", state === 'collapsed' && "opacity-0")}>
+            <span
+              className={cn(
+                "font-bold text-lg whitespace-nowrap",
+              )}
+            >
+              AlumniVerse
+            </span>
+            <p className="text-xs text-muted-foreground whitespace-nowrap">Connect. Engage. Grow.</p>
+          </div>
         </Link>
       </SidebarHeader>
       <SidebarContent>
@@ -194,7 +196,10 @@ function MobileSidebar() {
         <div className="p-4 border-b flex justify-between items-center">
           <Link href="/" className="flex items-center gap-2">
             <School className="w-7 h-7 text-primary" />
-            <span className="font-bold text-lg">AlumniVerse</span>
+            <div>
+              <span className="font-bold text-lg">AlumniVerse</span>
+              <p className="text-xs text-muted-foreground">Connect. Engage. Grow.</p>
+            </div>
           </Link>
           <ThemeToggle />
         </div>
@@ -246,7 +251,10 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
           <MobileSidebar />
            <Link href="/" className="flex items-center gap-2">
             <School className="w-6 h-6 text-primary" />
-            <span className="font-bold">AlumniVerse</span>
+            <div>
+                <span className="font-bold">AlumniVerse</span>
+                <p className="text-xs text-muted-foreground -mt-1">Connect. Engage. Grow.</p>
+            </div>
           </Link>
         </header>
         <SidebarInset className="bg-background max-h-screen overflow-hidden flex flex-col">
