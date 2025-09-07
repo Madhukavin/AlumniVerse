@@ -1,8 +1,9 @@
+
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   Briefcase,
   Calendar,
@@ -10,6 +11,9 @@ import {
   PanelLeft,
   Sparkles,
   Users,
+  LayoutDashboard,
+  LogOut,
+  Bot,
 } from "lucide-react";
 import {
   SidebarProvider,
@@ -19,29 +23,71 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
+  SidebarFooter,
   SidebarInset,
-  useSidebar,
 } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 
-const navItems = [
+const baseNavItems = [
   { href: "/", label: "Directory", icon: Users },
   { href: "/jobs", label: "Job Board", icon: Briefcase },
   { href: "/events", label: "Events", icon: Calendar },
   { href: "/mentor-finder", label: "Mentor Finder", icon: Sparkles },
+  { href: "/career-guidance", label: "Career AI", icon: Bot },
 ];
+
+const studentNavItems = [
+  { href: "/student/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  ...baseNavItems,
+];
+
+const alumniNavItems = baseNavItems;
+
+const recruiterNavItems = [
+  { href: "/recruiter/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/", label: "Alumni Directory", icon: Users },
+  { href: "/jobs", label: "Job Postings", icon: Briefcase },
+];
+
+const institutionNavItems = [
+  { href: "/institution/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/events", label: "Manage Events", icon: Calendar },
+];
+
 
 function MainSidebar() {
   const pathname = usePathname();
-  const { state } = useSidebar();
+  const router = useRouter();
+  const [navItems, setNavItems] = useState(alumniNavItems);
+
+  useEffect(() => {
+    const role = localStorage.getItem('userRole');
+    switch (role) {
+      case 'student':
+        setNavItems(studentNavItems);
+        break;
+      case 'recruiter':
+        setNavItems(recruiterNavItems);
+        break;
+      case 'institution':
+        setNavItems(institutionNavItems);
+        break;
+      default:
+        setNavItems(alumniNavItems);
+    }
+  }, [pathname]);
+
+  const handleLogout = () => {
+    localStorage.removeItem('userRole');
+    router.push('/login');
+  };
 
   return (
     <Sidebar
-      variant="sidebar"
       collapsible="icon"
-      className="border-r border-border/80 bg-background"
+      className="border-r border-border/80 bg-card"
     >
       <SidebarHeader>
         <Link href="/" className="flex items-center gap-2">
@@ -49,7 +95,6 @@ function MainSidebar() {
           <span
             className={cn(
               "font-bold text-lg whitespace-nowrap transition-opacity duration-300",
-              state === "collapsed" && "opacity-0 hidden"
             )}
           >
             AlumniVerse
@@ -75,17 +120,52 @@ function MainSidebar() {
           ))}
         </SidebarMenu>
       </SidebarContent>
+      <SidebarFooter>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton
+              onClick={handleLogout}
+              variant="ghost"
+              tooltip={{ children: "Logout", side: "right" }}
+            >
+              <LogOut />
+              <span>Logout</span>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
     </Sidebar>
   );
 }
 
 function MobileSidebar() {
   const pathname = usePathname();
+  const router = useRouter();
   const [open, setOpen] = React.useState(false);
+  const [navItems, setNavItems] = useState(alumniNavItems);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setOpen(false);
+     const role = localStorage.getItem('userRole');
+    switch (role) {
+      case 'student':
+        setNavItems(studentNavItems);
+        break;
+      case 'recruiter':
+        setNavItems(recruiterNavItems);
+        break;
+      case 'institution':
+        setNavItems(institutionNavItems);
+        break;
+      default:
+        setNavItems(alumniNavItems);
+    }
   }, [pathname]);
+
+   const handleLogout = () => {
+    localStorage.removeItem('userRole');
+    router.push('/login');
+  };
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -118,6 +198,16 @@ function MobileSidebar() {
                 </Button>
               </li>
             ))}
+             <li>
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start"
+                  onClick={handleLogout}
+                >
+                  <LogOut className="mr-2 h-4 w-4" />
+                  Logout
+                </Button>
+              </li>
           </ul>
         </nav>
       </SheetContent>
@@ -126,6 +216,12 @@ function MobileSidebar() {
 }
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
+    const pathname = usePathname();
+
+    if (pathname === '/login') {
+        return <>{children}</>;
+    }
+
   return (
     <SidebarProvider>
       <MainSidebar />

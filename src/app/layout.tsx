@@ -1,21 +1,29 @@
-import type { Metadata } from 'next';
+
+'use client';
+
 import './globals.css';
 import { AppLayout } from '@/components/layout/app-layout';
 import { Toaster } from '@/components/ui/toaster';
-
-export const metadata: Metadata = {
-  title: 'AlumniVerse',
-  description: 'Connecting alumni for lifelong success.',
-};
+import { usePathname } from 'next/navigation';
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname();
+  const isLoginPage = pathname === '/login';
+
+  const metadata = {
+    title: 'AlumniVerse',
+    description: 'Connecting alumni for lifelong success.',
+  };
+
   return (
     <html lang="en" className="dark">
       <head>
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
@@ -24,7 +32,7 @@ export default function RootLayout({
         />
       </head>
       <body className="font-body antialiased">
-        <AppLayout>{children}</AppLayout>
+        {isLoginPage ? children : <AppLayout>{children}</AppLayout>}
         <Toaster />
       </body>
     </html>
