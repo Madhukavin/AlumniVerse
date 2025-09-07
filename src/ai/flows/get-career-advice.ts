@@ -24,7 +24,7 @@ const GetCareerAdviceOutputSchema = z.object({
   advice: z
     .string()
     .describe(
-      'The generated career advice.'
+      'The generated career advice, formatted as a string with markdown for readability.'
     ),
 });
 export type GetCareerAdviceOutput = z.infer<
@@ -49,9 +49,10 @@ const prompt = ai.definePrompt({
   
   Your advice should be:
   - Clear and easy to understand.
-  - Broken down into actionable steps if possible.
+  - Broken down into actionable steps if possible, using markdown for lists.
   - Positive and motivating.
-  - Tailored to the user's question.
+  - Tailored to the user's specific question.
+  - Formatted with markdown (headings, bolding, lists) to improve readability.
   `,
 });
 
@@ -63,6 +64,9 @@ const getCareerAdviceFlow = ai.defineFlow(
   },
   async input => {
     const {output} = await prompt(input);
-    return output!;
+    if (!output) {
+      return { advice: "I'm sorry, I couldn't generate advice for that. Could you try rephrasing your question?" };
+    }
+    return output;
   }
 );
