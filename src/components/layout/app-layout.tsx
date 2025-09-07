@@ -33,6 +33,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import { auth } from "@/lib/firebase";
 import { signOut } from "firebase/auth";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const baseNavItems = [
   { href: "/", label: "Directory", icon: Users },
@@ -132,6 +133,9 @@ function MainSidebar() {
       </SidebarContent>
       <SidebarFooter>
         <SidebarMenu>
+           <SidebarMenuItem>
+             <ThemeToggle />
+           </SidebarMenuItem>
           <SidebarMenuItem>
             <SidebarMenuButton
               onClick={handleLogout}
@@ -187,11 +191,12 @@ function MobileSidebar() {
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="p-0 w-72 bg-card">
-        <div className="p-4 border-b">
+        <div className="p-4 border-b flex justify-between items-center">
           <Link href="/" className="flex items-center gap-2">
             <School className="w-7 h-7 text-primary" />
             <span className="font-bold text-lg">AlumniVerse</span>
           </Link>
+          <ThemeToggle />
         </div>
         <nav className="p-4">
           <ul className="space-y-2">

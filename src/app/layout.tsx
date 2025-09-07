@@ -7,6 +7,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { usePathname } from 'next/navigation';
 import { AuthProvider } from '@/components/auth-provider';
 import { Inter } from 'next/font/google';
+import { ThemeProvider } from '@/components/theme-provider';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
@@ -24,7 +25,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${inter.variable} dark`}>
+    <html lang="en" className={`${inter.variable}`} suppressHydrationWarning>
       <head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
@@ -34,10 +35,17 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased">
-        <AuthProvider>
-          {isLoginPage ? children : <AppLayout>{children}</AppLayout>}
-          <Toaster />
-        </AuthProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <AuthProvider>
+            {isLoginPage ? children : <AppLayout>{children}</AppLayout>}
+            <Toaster />
+          </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
