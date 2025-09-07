@@ -14,6 +14,7 @@ import {
   LayoutDashboard,
   LogOut,
   Bot,
+  HandCoins,
 } from "lucide-react";
 import {
   SidebarProvider,
@@ -39,6 +40,7 @@ const baseNavItems = [
   { href: "/events", label: "Events", icon: Calendar },
   { href: "/mentor-finder", label: "Mentor Finder", icon: Sparkles },
   { href: "/career-guidance", label: "Career AI", icon: Bot },
+  { href: "/fundraising", label: "Fundraising", icon: HandCoins },
 ];
 
 const studentNavItems = [
@@ -57,6 +59,7 @@ const recruiterNavItems = [
 const institutionNavItems = [
   { href: "/institution/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/events", label: "Manage Events", icon: Calendar },
+  { href: "/fundraising", label: "Fundraising", icon: HandCoins },
 ];
 
 

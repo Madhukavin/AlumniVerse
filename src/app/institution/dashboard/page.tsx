@@ -1,6 +1,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { BarChart, LineChart, PieChart, Users, Briefcase, Calendar } from 'lucide-react';
+import { BarChart, LineChart, PieChart, Users, Briefcase, Calendar, HandCoins } from 'lucide-react';
+import Link from 'next/link';
 
 export default function InstitutionDashboard() {
   return (
@@ -37,12 +38,14 @@ export default function InstitutionDashboard() {
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Jobs Posted</CardTitle>
-              <Briefcase className="h-4 w-4 text-muted-foreground" />
+              <CardTitle className="text-sm font-medium">Fundraising</CardTitle>
+              <HandCoins className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">350+</div>
-              <p className="text-xs text-muted-foreground">+30 this month</p>
+                <Link href="/fundraising">
+                    <div className="text-2xl font-bold hover:underline">$1.25M</div>
+                </Link>
+              <p className="text-xs text-muted-foreground">View fundraising analytics</p>
             </CardContent>
           </Card>
           <Card>
