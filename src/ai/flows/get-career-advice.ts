@@ -64,7 +64,7 @@ const getCareerAdviceFlow = ai.defineFlow(
   },
   async input => {
     const {output} = await prompt(input);
-    if (!output) {
+    if (!output?.advice) {
       return { advice: "I'm sorry, I couldn't generate advice for that. Could you try rephrasing your question?" };
     }
     return output;
