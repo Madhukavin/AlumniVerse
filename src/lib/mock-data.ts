@@ -1,4 +1,4 @@
-import type { Alumni, Job, Event } from './types';
+import type { Alumni, Job, Event, LeaderboardEntry } from './types';
 
 export const fieldsOfStudy = [
   "Computer Science", "Mechanical Engineering", "Business Administration", "Graphic Design", "Data Science", "Marketing"
@@ -156,4 +156,47 @@ export const events: Event[] = [
     imageUrl: "https://picsum.photos/600/400?random=12",
     description: "A casual get-together for alumni who are founders, investors, or interested in the startup scene.",
   }
+];
+
+export const leaderboardData: LeaderboardEntry[] = [
+  {
+    id: "1",
+    rank: 1,
+    name: "John Smith",
+    avatarUrl: "https://picsum.photos/100/100?random=2",
+    points: 12500,
+    contribution: 500000,
+  },
+  {
+    id: "2",
+    rank: 2,
+    name: "Jane Doe",
+    avatarUrl: "https://picsum.photos/100/100?random=1",
+    points: 11000,
+    contribution: 450000,
+  },
+  {
+    id: "3",
+    rank: 3,
+    name: "Michael Brown",
+    avatarUrl: "https://picsum.photos/100/100?random=4",
+    points: 9800,
+    contribution: 300000,
+  },
+  {
+    id: "4",
+    rank: 4,
+    name: "Sarah Green",
+    avatarUrl: "https://picsum.photos/100/100?random=5",
+    points: 8500,
+    contribution: 200000,
+  },
+  {
+    id: "5",
+    rank: 5,
+    name: "David Black",
+    avatarUrl: "https://picsum.photos/100/100?random=6",
+    points: 7200,
+    contribution: 150000,
+  },
 ];

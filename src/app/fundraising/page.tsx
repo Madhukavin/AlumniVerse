@@ -2,18 +2,18 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { HandCoins, Target, TrendingUp } from 'lucide-react';
+import { HandCoins, Target, Trophy } from 'lucide-react';
 import { ChartTooltip, ChartTooltipContent, ChartContainer } from '@/components/ui/chart';
 import { Bar, CartesianGrid, XAxis, YAxis, ResponsiveContainer, Pie, PieChart, Cell, BarChart } from 'recharts';
-
+import { LeaderboardTable } from '@/components/leaderboard-table';
 
 const chartData = [
-  { month: 'Jan', raised: 4000 },
-  { month: 'Feb', raised: 3000 },
-  { month: 'Mar', raised: 5000 },
-  { month: 'Apr', raised: 4500 },
-  { month: 'May', raised: 6000 },
-  { month: 'Jun', raised: 7500 },
+  { month: 'Jan', raised: 400000 },
+  { month: 'Feb', raised: 300000 },
+  { month: 'Mar', raised: 500000 },
+  { month: 'Apr', raised: 450000 },
+  { month: 'May', raised: 600000 },
+  { month: 'Jun', raised: 750000 },
 ];
 
 const pieData = [
@@ -42,7 +42,7 @@ export default function FundraisingPage() {
               <HandCoins className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">$1,250,000</div>
+              <div className="text-2xl font-bold">₹1,25,00,000</div>
               <p className="text-xs text-muted-foreground">+15% from last year</p>
             </CardContent>
           </Card>
@@ -52,18 +52,18 @@ export default function FundraisingPage() {
               <Target className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">$2,000,000</div>
+              <div className="text-2xl font-bold">₹2,00,00,000</div>
               <p className="text-xs text-muted-foreground">62.5% of goal reached</p>
             </CardContent>
           </Card>
-          <Card>
+           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Top Donors</CardTitle>
-              <TrendingUp className="h-4 w-4 text-muted-foreground" />
+              <CardTitle className="text-sm font-medium">Top Contributor</CardTitle>
+              <Trophy className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">5 Major Gifts</div>
-              <p className="text-xs text-muted-foreground">this quarter</p>
+              <div className="text-2xl font-bold">John Smith</div>
+              <p className="text-xs text-muted-foreground">₹5,00,000 this quarter</p>
             </CardContent>
           </Card>
         </div>
@@ -75,11 +75,11 @@ export default function FundraisingPage() {
                 <CardContent>
                      <ChartContainer config={{}} className="h-64 w-full">
                         <ResponsiveContainer width="100%" height="100%">
-                            <BarChart data={chartData}>
+                            <BarChart data={chartData} margin={{ top: 20, right: 20, left: 20, bottom: 5 }}>
                                 <CartesianGrid vertical={false} />
                                 <XAxis dataKey="month" tickLine={false} axisLine={false} />
-                                <YAxis tickLine={false} axisLine={false} />
-                                <ChartTooltip content={<ChartTooltipContent />} />
+                                <YAxis tickLine={false} axisLine={false} tickFormatter={(value) => `₹${Number(value) / 100000}L`} />
+                                <ChartTooltip content={<ChartTooltipContent formatter={(value) => `₹${value.toLocaleString()}`}/>} />
                                 <Bar dataKey="raised" fill="hsl(var(--primary))" radius={4} />
                             </BarChart>
                         </ResponsiveContainer>
@@ -105,6 +105,9 @@ export default function FundraisingPage() {
                     </ChartContainer>
                 </CardContent>
             </Card>
+        </div>
+        <div className="mt-6">
+            <LeaderboardTable />
         </div>
       </main>
     </div>

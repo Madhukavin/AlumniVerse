@@ -26,3 +26,12 @@ export type Event = {
   imageUrl: string;
   description: string;
 };
+
+export type LeaderboardEntry = {
+  id: string;
+  rank: number;
+  name: string;
+  avatarUrl: string;
+  points: number;
+  contribution: number;
+};
