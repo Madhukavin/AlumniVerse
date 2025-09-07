@@ -30,6 +30,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
+import { auth } from "@/lib/firebase";
+import { signOut } from "firebase/auth";
 
 const baseNavItems = [
   { href: "/", label: "Directory", icon: Users },
@@ -81,7 +83,8 @@ function MainSidebar() {
     }
   }, [pathname]);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await signOut(auth);
     localStorage.removeItem('userRole');
     router.push('/login');
   };
@@ -165,7 +168,8 @@ function MobileSidebar() {
     }
   }, [pathname]);
 
-   const handleLogout = () => {
+   const handleLogout = async () => {
+    await signOut(auth);
     localStorage.removeItem('userRole');
     router.push('/login');
   };
