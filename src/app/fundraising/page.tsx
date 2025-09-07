@@ -1,8 +1,10 @@
 
+"use client";
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { BarChart, HandCoins, Target, TrendingUp } from 'lucide-react';
+import { HandCoins, Target, TrendingUp } from 'lucide-react';
 import { ChartTooltip, ChartTooltipContent, ChartContainer } from '@/components/ui/chart';
-import { Bar, CartesianGrid, XAxis, YAxis, ResponsiveContainer, Pie, PieChart, Cell } from 'recharts';
+import { Bar, CartesianGrid, XAxis, YAxis, ResponsiveContainer, Pie, PieChart, Cell, BarChart } from 'recharts';
 
 
 const chartData = [
