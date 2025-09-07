@@ -20,7 +20,6 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarInset,
-  SidebarTrigger,
   useSidebar,
 } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
@@ -42,11 +41,11 @@ function MainSidebar() {
     <Sidebar
       variant="sidebar"
       collapsible="icon"
-      className="border-r border-border/80"
+      className="border-r border-border/80 bg-background"
     >
       <SidebarHeader>
         <Link href="/" className="flex items-center gap-2">
-          <GraduationCap className="w-7 h-7 text-accent" />
+          <GraduationCap className="w-7 h-7 text-primary" />
           <span
             className={cn(
               "font-bold text-lg whitespace-nowrap transition-opacity duration-300",
@@ -63,6 +62,7 @@ function MainSidebar() {
             <SidebarMenuItem key={item.href}>
               <SidebarMenuButton
                 asChild
+                variant="ghost"
                 isActive={pathname === item.href}
                 tooltip={{ children: item.label, side: "right" }}
               >
@@ -95,10 +95,10 @@ function MobileSidebar() {
           <span className="sr-only">Toggle Menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="p-0 w-72 bg-sidebar">
+      <SheetContent side="left" className="p-0 w-72 bg-card">
         <div className="p-4 border-b">
           <Link href="/" className="flex items-center gap-2">
-            <GraduationCap className="w-7 h-7 text-accent" />
+            <GraduationCap className="w-7 h-7 text-primary" />
             <span className="font-bold text-lg">AlumniVerse</span>
           </Link>
         </div>
@@ -133,7 +133,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
         <header className="p-2 md:hidden flex items-center gap-2 border-b">
           <MobileSidebar />
            <Link href="/" className="flex items-center gap-2">
-            <GraduationCap className="w-6 h-6 text-accent" />
+            <GraduationCap className="w-6 h-6 text-primary" />
             <span className="font-bold">AlumniVerse</span>
           </Link>
         </header>
