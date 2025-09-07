@@ -1,6 +1,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Briefcase, Calendar, Users, Sparkles } from 'lucide-react';
+import { Briefcase, Calendar, Users, Sparkles, HandCoins } from 'lucide-react';
+import Link from 'next/link';
 
 export default function StudentDashboard() {
   return (
@@ -21,8 +22,10 @@ export default function StudentDashboard() {
               <Sparkles className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">AI-Powered</div>
-              <p className="text-xs text-muted-foreground">Get matched with alumni mentors.</p>
+                <Link href="/mentor-finder" className="hover:underline">
+                    <div className="text-2xl font-bold">AI-Powered</div>
+                    <p className="text-xs text-muted-foreground">Get matched with alumni mentors.</p>
+                </Link>
             </CardContent>
           </Card>
           <Card>
@@ -31,8 +34,10 @@ export default function StudentDashboard() {
               <Briefcase className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">150+</div>
-              <p className="text-xs text-muted-foreground">Active job postings</p>
+                <Link href="/jobs" className="hover:underline">
+                    <div className="text-2xl font-bold">150+</div>
+                    <p className="text-xs text-muted-foreground">Active job postings</p>
+                </Link>
             </CardContent>
           </Card>
           <Card>
@@ -41,8 +46,10 @@ export default function StudentDashboard() {
               <Users className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">10,000+</div>
-              <p className="text-xs text-muted-foreground">Connections to make</p>
+                <Link href="/" className="hover:underline">
+                    <div className="text-2xl font-bold">10,000+</div>
+                    <p className="text-xs text-muted-foreground">Connections to make</p>
+                </Link>
             </CardContent>
           </Card>
           <Card>
@@ -51,8 +58,22 @@ export default function StudentDashboard() {
               <Calendar className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">5</div>
-              <p className="text-xs text-muted-foreground">Events this month</p>
+                <Link href="/events" className="hover:underline">
+                    <div className="text-2xl font-bold">5</div>
+                    <p className="text-xs text-muted-foreground">Events this month</p>
+                </Link>
+            </CardContent>
+          </Card>
+           <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Fundraising</CardTitle>
+              <HandCoins className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+                <Link href="/fundraising" className="hover:underline">
+                    <div className="text-2xl font-bold">₹1,25,00,000</div>
+                    <p className="text-xs text-muted-foreground">View fundraising analytics</p>
+                </Link>
             </CardContent>
           </Card>
         </div>

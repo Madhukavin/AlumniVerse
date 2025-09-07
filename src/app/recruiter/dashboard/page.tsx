@@ -1,7 +1,8 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { PlusCircle, Users, Briefcase, Search } from 'lucide-react';
+import { PlusCircle, Users, Briefcase, Search, HandCoins } from 'lucide-react';
+import Link from 'next/link';
 
 export default function RecruiterDashboard() {
   return (
@@ -14,10 +15,12 @@ export default function RecruiterDashboard() {
                     Find and recruit top talent from our alumni network.
                 </p>
             </div>
-            <Button>
-                <PlusCircle className="mr-2 h-4 w-4" />
-                Post a New Job
-            </Button>
+             <Link href="/jobs">
+                <Button>
+                    <PlusCircle className="mr-2 h-4 w-4" />
+                    Post a New Job
+                </Button>
+            </Link>
         </div>
       </header>
       <main className="flex-1 overflow-auto p-4 md:p-6">
@@ -28,8 +31,10 @@ export default function RecruiterDashboard() {
               <Search className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">Advanced Search</div>
-              <p className="text-xs text-muted-foreground">Filter by skills, experience, and more.</p>
+                <Link href="/" className="hover:underline">
+                    <div className="text-2xl font-bold">Advanced Search</div>
+                    <p className="text-xs text-muted-foreground">Filter by skills, experience, and more.</p>
+                </Link>
             </CardContent>
           </Card>
           <Card>
@@ -38,8 +43,10 @@ export default function RecruiterDashboard() {
               <Briefcase className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">12</div>
-              <p className="text-xs text-muted-foreground">Active postings</p>
+                 <Link href="/jobs" className="hover:underline">
+                    <div className="text-2xl font-bold">12</div>
+                    <p className="text-xs text-muted-foreground">Active postings</p>
+                </Link>
             </CardContent>
           </Card>
           <Card>
@@ -50,6 +57,18 @@ export default function RecruiterDashboard() {
             <CardContent>
               <div className="text-2xl font-bold">87</div>
               <p className="text-xs text-muted-foreground">New applicants this week</p>
+            </CardContent>
+          </Card>
+           <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Fundraising</CardTitle>
+              <HandCoins className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+                <Link href="/fundraising" className="hover:underline">
+                    <div className="text-2xl font-bold">₹1,25,00,000</div>
+                    <p className="text-xs text-muted-foreground">View fundraising analytics</p>
+                </Link>
             </CardContent>
           </Card>
         </div>

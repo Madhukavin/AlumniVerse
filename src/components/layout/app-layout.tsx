@@ -54,6 +54,7 @@ const recruiterNavItems = [
   { href: "/recruiter/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/", label: "Alumni Directory", icon: Users },
   { href: "/jobs", label: "Job Postings", icon: Briefcase },
+  { href: "/fundraising", label: "Fundraising", icon: HandCoins },
 ];
 
 const institutionNavItems = [
